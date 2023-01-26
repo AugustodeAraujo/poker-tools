@@ -37,14 +37,14 @@
         ></b-numberinput>
       </div>
 
-      <div  class="mt-2">
-        <p class="has-text-weight-medium is-italic ml-4 my-2">Premiação: R$ {{ prize }},00</p>
-
-
+      <div class="mt-2">
+        <p class="has-text-weight-medium is-italic ml-4 my-2">
+          Premiação: R$ {{ prize }},00
+        </p>
       </div>
     </div>
 
-    <div class="hero-body is-flex is-justify-content-center is-flex-wrap-wrap ">
+    <div class="hero-body is-flex is-justify-content-center is-flex-wrap-wrap">
       <div
         v-for="(player, index) in currentPlayers"
         :key="index"
@@ -113,11 +113,14 @@ export default {
   },
 
   computed: {
-
-    prize(){
-      return this.currentPlayers.reduce((total, player) => total + player.buy_in, 0) * this.price
-    }
-
+    prize() {
+      return (
+        this.currentPlayers.reduce(
+          (total, player) => total + player.buy_in,
+          0
+        ) * this.price
+      )
+    },
   },
 
   watch: {
@@ -238,5 +241,9 @@ export default {
   place-items: center;
   justify-content: space-around;
   gap: 10px;
+}
+
+* {
+  touch-action: manipulation;
 }
 </style>
