@@ -6,14 +6,14 @@
           v-model="inputPlayer"
           class="mb-1"
           placeholder="Nome..."
-          size="is-large"
+          size="is-medium"
           icon="account"
           expanded
         >
         </b-input>
 
         <b-button
-          type="is-info is-large"
+          type="is-info is-medium"
           @click="addNewPlayer"
           @keyup.enter="addNewPlayer"
           >Novo jogador</b-button
@@ -27,7 +27,7 @@
           v-model="price"
           min="1"
           max="1000"
-          size="is-large"
+          size="is-medium"
           type="is-success"
           rounded
           controls-alignment="right"
@@ -35,6 +35,12 @@
           controls-rounded
           expanded
         ></b-numberinput>
+      </div>
+
+      <div  class="mt-2">
+        <p class="has-text-weight-medium is-italic ml-4 my-2">Premiação: R$ {{ prize }},00</p>
+
+
       </div>
     </div>
 
@@ -106,7 +112,13 @@ export default {
     }
   },
 
-  computed: {},
+  computed: {
+
+    prize(){
+      return this.currentPlayers.reduce((total, player) => total + player.buy_in, 0) * this.price
+    }
+
+  },
 
   watch: {
     price() {
